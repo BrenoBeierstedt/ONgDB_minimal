@@ -31,4 +31,4 @@ file in your pc (Mac and linux) and add:
 
 ## Credits
 
-* Breno Beierstedt <breno@iocom.com.br>
+* Breno Beierstedt da Rosa <breno.rosa@2b-soft.com>
