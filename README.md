@@ -27,31 +27,7 @@ file in your pc (Mac and linux) and add:
 127.0.0.1   ongdb.local.com
 ```
 
-# Dockerfile 
 
-## Operational System
-
-debian:jessie-slim
-
-## Language
-
-NODE_VERSION 10.14.2
-
-## Dependency Management
-
-YARN_VERSION 1.12.3
-
-## Main user
-
-id=1001
-
-## Buildade image size
-
-185MB
-
-## Work Directory
-
-/opt/app-root/src
 
 ## Credits
 

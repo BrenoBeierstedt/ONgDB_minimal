@@ -1,0 +1,44 @@
+version: '3.6'
+services:
+
+  proxy:
+    container_name: proxy.local.com
+    image: jwilder/nginx-proxy:latest
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "./proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    networks:
+      main:
+        aliases:
+          - proxy.local.com
+
+  ongdb.local.com:
+    container_name: ongdb.local.com
+    image: ongdb_minimal
+    ports:
+      - "7474:7474"
+      - "7473:7473"
+      - "7687:7687"
+    restart: always
+    volumes:
+      - "./var/ongdb:/data:rw"
+    environment:
+      VIRTUAL_HOST: 'ongdb.local.com'
+      NEO4J_dbms_security_procedures_unrestricted: "apoc.*"
+      NEO4J_apoc_import_file_enabled: "true"
+      NEO4J_apoc_export_file_enabled: "true"
+      NEO4J_dbms_shell_enabled: "true"
+      NEO4Jdbms.security.procedures.whitelist: "apoc.coll.*,apoc.load.*,apoc.*"
+    networks:
+      main:
+        aliases:
+          - ongdb.local.com
+
+
+
+
+networks:
+  main:
